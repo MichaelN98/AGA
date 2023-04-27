@@ -45,7 +45,7 @@ class LoginPage(BasePage):
 
     __header_logo = (By.XPATH, "//img[@class='img-header']")
     __multisearch = (By.XPATH, "//li[@id='searchBtn']")
-    __is_open_multisearch = (By.XPATH, "//input[@id='q']")
+
 
     def is_log_password_google(self):
         is_log_password_google_element = self.__wait.until(EC.visibility_of_element_located(self.__login_password))
@@ -70,10 +70,6 @@ class LoginPage(BasePage):
     def click_login_button_error(self):
         self._click(self.__login_button)
         return LoginPage(self.driver)
-
-    def is_error_message_displayed(self):
-        error_message_element = self.__wait.until(EC.visibility_of_element_located(self.__error_message))
-        return error_message_element.is_displayed()
 
     def click_login_button_facebook(self):
         self._click(self.__login_facebook)
@@ -127,29 +123,7 @@ class LoginPage(BasePage):
         self._click(self.__eye)
         return self
 
-    def is_show_password(self):
-        show_password_element = self.__wait.until(EC.visibility_of_element_located(self.__show_input_password))
-        return show_password_element.is_displayed()
-
     def click_multisearch(self):
         self._click(self.__multisearch)
         return self
 
-    def is_open_multisearch(self):
-        open_multisearch_element = self.__wait.until(EC.visibility_of_element_located(self.__is_open_multisearch))
-        return open_multisearch_element.is_displayed()
-
-
-
-
-    # def is_error_message_displayed(self):
-    #     error_message_element = self.__wait.until(EC.visibility_of_element_located(self.__error_message))
-    #     return error_message_element.is_displayed()
-
-    # def set_invalid_email(self, email: str):
-    #     self._send_invalid_keys(locator=self.__email_input, value=email)
-    #     return self
-
-    # def click_login_facebook_button(self):
-    #     self._click(self.__login_facebook)
-    #     return UcpSubscription(self.driver)

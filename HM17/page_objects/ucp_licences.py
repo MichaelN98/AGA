@@ -2,14 +2,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from HM17.utilities.web_ui.base_page import BasePage
 
-class UcpLicenses:
+
+class UcpLicenses(BasePage):
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
         self.__wait = WebDriverWait(self.driver, 20, 10)
 
-    __h1_licenses = (By.XPATH, "//h1[@class='licenses__heading']")
-
-    def is_h1_licenses_displayed(self):
-        h1_licenses_element = self.__wait.until(EC.visibility_of_element_located(self.__h1_licenses))
-        return h1_licenses_element.is_displayed()
