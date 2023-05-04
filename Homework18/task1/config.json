@@ -1,0 +1,17 @@
+{
+  "app_url" : "https://netpeaksoftware.com/login",
+  "app_url_main" : "https://netpeaksoftware.com",
+  "app_url_pricing" : "https://netpeaksoftware.com/pricing",
+  "email" : "ferrao.netpeak@gmail.com",
+  "password" : 123456,
+  "browser_id" : 1,
+  "headless" : "False",
+  "invalid_email" : "ferrao.peak@gmail.com",
+  "invalid_password" : 222222,
+  "password_email" : 123456,
+  "val_email" : "ferrao.netpeak@gmail.com",
+  "email_facebook" : "farreotestnetpeak@gmail.com",
+  "password_facebook" : "MISHA12345",
+  "email_google" : "michnok98@gmail.com",
+  "password_google" : " zxc1998N"
+}
