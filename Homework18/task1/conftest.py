@@ -1,12 +1,16 @@
 import pytest
 import json
 
+from HM17.constants import ROOT_DIR
 from HM17.page_objects.login_page import LoginPage
 from HM17.page_objects.main_page import MainPage
 from HM17.page_objects.pricing_page import Pricing
 from HM17.utilities.driver_factory import driver_factory
-from Homework18.task1.HM18.constants import ROOT_DIR
 from Homework18.task1.confiquration import Configuration
+
+
+from Homework18.task1.HM18.constants import ROOT_DIR
+from HM17.task1.confiquration import Configuration
 
 
 @pytest.fixture(scope='session', autouse=True)
