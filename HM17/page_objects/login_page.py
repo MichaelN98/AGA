@@ -1,4 +1,6 @@
 from telnetlib import EC
+
+import allure
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -46,19 +48,21 @@ class LoginPage(BasePage):
     __header_logo = (By.XPATH, "//img[@class='img-header']")
     __multisearch = (By.XPATH, "//li[@id='searchBtn']")
 
-
     def is_log_password_google(self):
         is_log_password_google_element = self.__wait.until(EC.visibility_of_element_located(self.__login_password))
         return is_log_password_google_element.is_displayed()
 
+    @allure.step
     def set_email(self, email: str):
         self._send_keys(locator=self.__email_input, value=email)
         return self
 
+    @allure.step
     def set_password(self, password: str):
         self._send_keys(locator=self.__password_input, value=password)
         return self
 
+    @allure.step
     def click_login_button(self):
         self._click(self.__login_button)
         return UcpSubscription(self.driver)
@@ -126,4 +130,3 @@ class LoginPage(BasePage):
     def click_multisearch(self):
         self._click(self.__multisearch)
         return self
-

@@ -10,3 +10,4 @@ tomli==2.0.1
 wheel==0.38.4
 selenium
 webdriver-manager==3.8.6
+allure-pytest

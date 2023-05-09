@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import allure
 
 
 class BasePage:
@@ -108,13 +109,13 @@ class BasePage:
     def _wait_until_element_visible(self, locator):
         return self.__wait.until(EC.visibility_of_element_located(locator))
 
+    @allure.step
     def _send_keys(self, locator, value, is_clear=True):
         element = self._wait_until_element_located(locator)
         if is_clear:
             element.clear()
         element.send_keys(value)
 
+    @allure.step
     def _click(self, locator):
         self._wait_until_to_be_clickable(locator).click()
-
-

@@ -1,4 +1,7 @@
+import allure
 import pytest
+from allure_commons.types import AttachmentType
+
 from HM17.utilities.config_reader import get_user_creds, get_invalid_user_creds, get_invalid_user_data_email_creds, \
     get_invalid_user_data_password_creds, get_user_creds_facebook, get_user_creds_google
 
@@ -13,11 +16,67 @@ def test_login(open_login_page):
 
 @pytest.mark.login
 @pytest.mark.regression
-def test_invalid_email_and_password(open_login_page):
+def test_login_invalid(open_login_page):
+    login_page = open_login_page
+    ucp_subscription = login_page.set_email(get_user_creds()[0]).set_password(
+        get_user_creds()[1]).click_login_button()
+    assert False(), 'H1 not displayed'
+
+
+@allure.feature('id_1722: Implamaent login page')
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description('This test incorrect login')
+@allure.epic('Epic_12312')
+@allure.title('Test login')
+@pytest.mark.login
+@pytest.mark.regression
+def test_invalid_email_and_password_1(open_login_page):
     login_page = open_login_page
     message_error = login_page.set_email(get_invalid_user_creds()[0]).set_password(get_invalid_user_creds()[1]). \
         click_login_button_error()
     assert message_error.is_error_message_displayed(), 'Error message not displayed'
+
+
+@allure.feature('id_1722: Implamaent login page1')
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description('This test incorrect login1')
+@allure.epic('Epic_123121')
+@allure.title('Test login1')
+@pytest.mark.login
+@pytest.mark.regression
+def test_invalid_email_and_password_allll(open_login_page):
+    login_page = open_login_page
+    with allure.step('Open login page'):
+        allure.attach(login_page.driver.get_screenshot_as_png(), name='Screenshot', attachment_type=AttachmentType.PNG)
+    email, password = get_invalid_user_creds()
+    with allure.step(f'Set email and password: {email}/{password}'):
+        login_page.set_email(email).set_password(password)
+    with allure.step('Click login button and verify error message'):
+        message_error = login_page.click_login_button_error()
+        assert message_error.is_displayed(), 'Error message not displayed'
+    with allure.step('Take a screenshot of the error message'):
+        allure.attach(login_page.driver.get_screenshot_as_png(), name='Error Screenshot',
+                      attachment_type=AttachmentType.PNG)
+    assert False, 'Test Failed: Error message not displayed'  # corrected the test result message
+
+
+@allure.feature('id_1722: Implamaent login page')
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description('This test incorrect login')
+@allure.epic('Epic_12312')
+@allure.title('Test login')
+@pytest.mark.login
+@pytest.mark.regression
+def test_invalid_email_and_password_invalid(open_login_page):
+    login_page = open_login_page
+    with allure.step('делаем скриншот'):
+        allure.attach(login_page.driver.get_screenshot_as_png(), name='Screenshot', attachment_type=AttachmentType.PNG)
+    message_error = login_page.set_email(get_invalid_user_creds()[0]).set_password(get_invalid_user_creds()[1]). \
+        click_login_button_error()
+    with allure.step('Take a screenshot of the error message'):
+        allure.attach(login_page.driver.get_screenshot_as_png(), name='Error Screenshot',
+                      attachment_type=AttachmentType.PNG)
+    assert False, 'Error message not displayed'
 
 
 @pytest.mark.login
@@ -31,6 +90,16 @@ def test_click_button_login_without_data(open_login_page):
 @pytest.mark.login
 @pytest.mark.regression
 def test_invalid_email(open_login_page):
+    login_page = open_login_page
+    message_error = login_page.set_email(get_invalid_user_data_email_creds()[0]). \
+        set_password(get_invalid_user_data_email_creds()[1]). \
+        click_login_button_error()
+    assert message_error.is_error_message_displayed(), 'Error message not displayed'
+
+
+@pytest.mark.login
+@pytest.mark.regression
+def test_invalid_email_failed(open_login_page):
     login_page = open_login_page
     message_error = login_page.set_email(get_invalid_user_data_email_creds()[0]). \
         set_password(get_invalid_user_data_email_creds()[1]). \
@@ -203,5 +272,3 @@ def test_change_to_lifetime_spider(open_pricing_page):
 #         alert = login_page.driver.switch_to.alert
 #         alert.accept()
 #     assert main_page_go.is_h1_main_page_displayed(), 'H1 not displayed'
-
-
