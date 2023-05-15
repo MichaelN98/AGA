@@ -19,8 +19,8 @@ from HM17.utilities.driver_factory import driver_factory
 #     driver.get(url)
 #     yield driver
 #     driver.quit()
-
-
+#
+#
 # @pytest.fixture()
 # def open_login_page(create_browser):
 #     return LoginPage(create_browser)
